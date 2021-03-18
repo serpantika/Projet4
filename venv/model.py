@@ -43,17 +43,15 @@ class ModelBasic(object):
             players[i] = {'nom': lastname, 'prénom': firstname,
                           'date de naissance': birthday, 'sexe': sexe, 'classement': rank}
         else:
-            raise PlayerNotRegistered('can\'t update "{}" because it\'s not registered'.format(lastname))
+            raise PlayerNotRegistered
 
     def delete_player(lastname):
         global players
-        idxs_players = list(
-        filter(lambda i_x: i_x[1]['name'] == lastname, enumerate(players)))
-        if idxs_players:
-            i, player_to_delete = idxs_players[0][0], idxs_players[0][1]
-            del players[i]
+        my_players = Query()
+        if players.search(my_players.nom == lastname):
+            players.remove(my_players.nom == lastname)
         else:
-            raise PlayerAlreadyRegistered('Can\'t delete "{}" because it\'s not registered'.format(lastname))
+            raise PlayerAlreadyRegistered
 
 
 
