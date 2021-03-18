@@ -30,7 +30,6 @@ class View(object):
         print('**************************************************************')
         print('Le joueur {} est déjà inscrit!'
               .format(player.upper()))
-        print('{}'.format(err.args[0]))
         print('**************************************************************')
 
     @staticmethod
@@ -38,7 +37,6 @@ class View(object):
         print('**************************************************************')
         print('Ce joueur {} n\'est pas inscrit'
               .format(player.upper()))
-        print('{}'.format(err.args[0]))
         print('**************************************************************')
 
     @staticmethod
