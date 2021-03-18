@@ -12,7 +12,8 @@ class Menu():
         nn = 2
         while nn != 0:
             print('Que voulez vous faire ?\n1: Créer un nouveau tournoi \n2: Ajouter des joueurs'
-                  '\n3: Afficher les joueurs du tournoi \n4: Afficher un joueur du tournoi \n0: Quitter le programme')
+                  '\n3: Afficher les joueurs du tournoi \n4: Afficher un joueur du tournoi '
+                  '\n5: Supprimer un joueur du tournoi \n0: Quitter le programme')
             nn = input()
             nn = int(nn)
             if nn == 1:
@@ -44,9 +45,12 @@ class Menu():
                 print('Ajout de joueur terminé')
             elif nn == 3:
                 Controller.show_players()
-            elif nn ==4:
+            elif nn == 4:
                 lastname = input('Nom du joueur recherché: ')
                 Controller.show_player(lastname)
+            elif nn == 5:
+                lastname = input('Nom du joueur à supprimer: ')
+                Controller.delete_player(lastname)
             elif nn != 0:
                 print("Choix inconnus")
 
@@ -68,5 +72,9 @@ class Controller(object):
         ModelBasic.create_player(lastname, firstname, birthday, sexe, rank)
     def update_player(self):
         pass
-    def delete_player(self):
-        pass
+    def delete_player(lastname):
+        try:
+            ModelBasic.delete_player(lastname)
+            View.display_player_deletion(lastname)
+        except PlayerNotRegistered as e:
+            View.display_player_not_yet_stored_error(lastname,e)
