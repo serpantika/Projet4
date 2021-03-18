@@ -1,4 +1,5 @@
 from tinydb import TinyDB, Query
+from collections import OrderedDict
 
 class PlayerAlreadyRegistered(Exception):
     pass
@@ -30,7 +31,7 @@ class ModelBasic(object):
             raise PlayerNotRegistered
 
 
-    def read_players():
+    def read_players_alphabetic():
         global players
         return [player for player in players]
 

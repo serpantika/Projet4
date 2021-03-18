@@ -13,8 +13,7 @@ class Menu():
         while nn != 0:
             print('Que voulez vous faire ?\n1: Créer un nouveau tournoi \n2: Ajouter des joueurs'
                   '\n3: Afficher les joueurs du tournoi \n4: Afficher un joueur du tournoi '
-                  '\n5: Supprimer un joueur du tournoi \n0: Quitter le programme'
-                  '\n6: Modifier un joueur du tournoi ')
+                  '\n5: Supprimer un joueur du tournoi \n6: Modifier un joueur du tournoi \n0: Quitter le programme ')
             nn = input()
             nn = int(nn)
             if nn == 1:
@@ -67,7 +66,7 @@ class Menu():
 class Controller(object):
 
     def show_players():
-        players = ModelBasic.read_players()
+        players = ModelBasic.read_players_alphabetic()
         View.show_number_point_list(players)
 
     def show_player(lastname):
