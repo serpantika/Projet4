@@ -36,12 +36,12 @@ class ModelBasic(object):
 
     def update_player(lastname, firstname, birthday, sexe, rank):
         global players
-        idxs_players = list(
-        filter(lambda i_x: i_x[1]['lastname'] == lastname, enumerate(players)))
-        if idxs_players:
-            i, item_to_update = idxs_players[0][0], idxs_players[0][1]
-            players[i] = {'nom': lastname, 'prénom': firstname,
-                          'date de naissance': birthday, 'sexe': sexe, 'classement': rank}
+        my_players = Query()
+        if players.search(my_players.nom == lastname):
+            players.update_multiple([({'prénom': firstname}, my_players.nom == lastname),
+                                     ({'date de naissance': birthday}, my_players.nom == lastname),
+                                     ({'sexe': sexe}, my_players.nom == lastname),
+                                     ({'classement' : rank}, my_players.nom == lastname)])
         else:
             raise PlayerNotRegistered
 
@@ -51,7 +51,7 @@ class ModelBasic(object):
         if players.search(my_players.nom == lastname):
             players.remove(my_players.nom == lastname)
         else:
-            raise PlayerAlreadyRegistered
+            raise PlayerNotRegistered
 
 
 
